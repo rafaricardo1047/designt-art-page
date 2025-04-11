@@ -1,5 +1,7 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1963396824.
 import Image from "next/image";
 import Link from "next/link";
+import { CustomButton } from "@/components/ui/button";
 
 export default function Home() {
   const services = [
@@ -49,7 +51,7 @@ export default function Home() {
   const additionalServices = [
     {
       category: "BUSINESS - PRODUCT - SOCIAL",
-      title: "Photography",
+      title: "Logo y Branding",
       image: "https://ext.same-assets.com/2751894838/3397783468.jpeg",
       link: "/photography"
     },
@@ -60,7 +62,7 @@ export default function Home() {
       link: "/seo"
     },
     {
-      category: "BUSINESS CARDS - PACKAGING - LARGE FORMAT",
+      category: "BUSINESS CARDS - PACKAGING",
       title: "Print Design",
       image: "https://ext.same-assets.com/2751894838/3294515083.png",
       link: "/contact"
@@ -76,9 +78,9 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-[#f5f5f3] py-24">
+      <section className="relative bg-[#f5f5f3] py-16">
         <div className="container-custom">
-          <div className="max-w-3xl">
+          <div className="max-w-6xl">
             <h1 className="text-6xl md:text-7xl font-medium text-[#444b46] mb-10">
               Your Vision, Our Expertise
             </h1>
@@ -86,17 +88,63 @@ export default function Home() {
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {services.map((service, index) => (
+              <div key={service.title} className="relative block">
+                 <Link href={service.link}>
+                  <div className="relative h-64 overflow-hidden group">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                        width={300}
+                        height={250}
+                      />
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-[#445146]"></div>
+                  </div>
+                  <div className="w-full h-0.5 bg-[#445146] mt-2" />
+                  <div className="mt-4">
+                    <h3 className="text-xl font-medium text-[#444b46]">
+                      {service.title}
+                    </h3>
+                    <div className="mt-2">
+                      <button className="inline-flex items-center px-4 py-1.5 border border-[#445146] text-sm font-medium text-[#445146] rounded-full hover:bg-black hover:text-white hover:span-white transition">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#445146] mr-2"></span>
+                        Learn More
+                      </button>
+
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Services Section */}
+      <section className="py-0 bg-white">
+        <div className="container-custom">
+          <p className="text-2xl font-bold text-[#657769] mb-12 max-w-2xl">
+            We enjoy making companies look better with great design and going the extra mile to provide a service that we would like to experience ourselves.
+          </p>
+
+          <h2 className="text-2xl font-medium text-[#444b46] mb-4">Other ways we help grow businesses</h2>
+          <p className="text-gray-600 mb-12 max-w-2xl">
+            No matter the project or where you are on your journey, our approach stays the same - superior service and impeccable design.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {additionalServices.map((service, index) => (
               <Link key={service.title} href={service.link}>
                 <div className="relative block group">
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-64 overflow-hidden ">
                     <Image
                       src={service.image}
                       alt={service.title}
                       className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
                       width={300}
                       height={250}
-                    />
+                      />
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#445146]"></div>
                   </div>
                   <div className="mt-3">
                     <p className="text-xs uppercase tracking-wider text-gray-600">
@@ -106,52 +154,16 @@ export default function Home() {
                       {service.title}
                     </h3>
                   </div>
+                  <div className="mt-3">
+                    <button className="px-4 py-2 bg-[#657769] text-white rounded-md hover:bg-[#556759] transition-colors">
+                      Ver Más
+                    </button>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Main Services Section */}
-      <section className="py-16 bg-white">
-        <div className="container-custom">
-          <p className="text-xl text-[#657769] mb-12 max-w-2xl">
-            We enjoy making companies look better with great design and going the extra mile to provide a service that we would like to experience ourselves.
-          </p>
-
-          <h2 className="text-2xl font-medium text-[#444b46] mb-4">Other ways we help grow businesses</h2>
-          <p className="text-gray-600 mb-12 max-w-2xl">
-            No matter the project or where you are on your journey, our approach stays the same - superior service and impeccable design.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {services.map((service, index) => (
-              <div key={service.title} className="relative block">
-                <Link href={service.link}>
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      className="object-cover w-full h-full"
-                      width={300}
-                      height={250}
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <h3 className="text-xl font-medium text-[#444b46]">
-                      {service.title}
-                    </h3>
-                    <div className="mt-2">
-                      <span className="inline-block text-sm font-medium text-[#657769] hover:text-[#444b46]">
-                        Learn More
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
